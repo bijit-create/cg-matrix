@@ -45,20 +45,25 @@ if mode == "⚡ Quick Generate":
     col_input, col_results = st.columns([1, 2])
 
     with col_input:
-        tsv = st.text_area("Quick Paste (TSV Row)", height=60, placeholder="Paste Excel row...")
-        lo = st.text_area("Learning Objective", height=60)
-        skill = st.text_input("Skill Description")
-        count = st.number_input("Questions", min_value=1, max_value=30, value=15)
+        # Init defaults
+        for k, v in [("q_lo", ""), ("q_skill", ""), ("q_tsv", "")]:
+            if k not in st.session_state: st.session_state[k] = v
 
-        # TSV auto-parse
-        if tsv:
+        tsv = st.text_area("Quick Paste (TSV Row)", height=60, placeholder="Paste Excel row...", key="q_tsv")
+
+        # TSV auto-parse — populate session state so widgets update on next rerun
+        if tsv and tsv.strip():
             try:
                 row = tsv.strip().split("\n")[-1].split("\t")
-                if len(row) >= 15:
-                    if not skill: skill = row[5]
-                    if not lo: lo = row[15] if len(row) > 15 else ""
-                    st.session_state["meta"] = {"grade": row[1], "subject": row[0], "skill_code": row[3]}
+                if len(row) >= 6:
+                    if not st.session_state.q_skill: st.session_state.q_skill = row[5]
+                    if len(row) > 15 and not st.session_state.q_lo: st.session_state.q_lo = row[15]
+                    st.session_state["meta"] = {"grade": row[1], "subject": row[0], "skill_code": row[3] if len(row) > 3 else ""}
             except: pass
+
+        lo = st.text_area("Learning Objective", height=60, key="q_lo")
+        skill = st.text_input("Skill Description", key="q_skill")
+        count = st.number_input("Questions", min_value=1, max_value=30, value=15)
 
         uploaded = st.file_uploader("Upload Content (PDF/DOCX/Excel)", type=["pdf", "docx", "xlsx"])
         content = st.text_area("Or paste chapter text", height=100)
@@ -277,11 +282,26 @@ elif mode == "🔬 Full Pipeline":
     # --- Step: Input ---
     if step == "input":
         st.subheader("📝 New Generation Task")
-        tsv = st.text_area("Quick Paste (TSV Row)", height=60)
-        lo = st.text_area("Learning Objective", height=80)
-        skill = st.text_input("Skill Description")
+
+        for k, v in [("p_lo", ""), ("p_skill", ""), ("p_tsv", "")]:
+            if k not in st.session_state: st.session_state[k] = v
+
+        tsv = st.text_area("Quick Paste (TSV Row)", height=60, key="p_tsv")
+
+        # TSV auto-parse
+        if tsv and tsv.strip():
+            try:
+                row = tsv.strip().split("\n")[-1].split("\t")
+                if len(row) >= 6:
+                    if not st.session_state.p_skill: st.session_state.p_skill = row[5]
+                    if len(row) > 15 and not st.session_state.p_lo: st.session_state.p_lo = row[15]
+                    st.session_state.pipe_meta = {"grade": row[1], "subject": row[0], "skill_code": row[3] if len(row) > 3 else ""}
+            except: pass
+
+        lo = st.text_area("Learning Objective", height=80, key="p_lo")
+        skill = st.text_input("Skill Description", key="p_skill")
         count = st.number_input("Number of Questions", 1, 30, 15)
-        uploaded = st.file_uploader("Upload Content", type=["pdf", "docx", "xlsx"])
+        uploaded = st.file_uploader("Upload Content", type=["pdf", "docx", "xlsx"], key="p_upload")
         content = st.text_area("Or paste chapter text", height=120)
 
         if uploaded:
@@ -291,15 +311,6 @@ elif mode == "🔬 Full Pipeline":
                 st.success(f"Extracted {len(text)} chars")
             except Exception as e:
                 st.error(str(e))
-
-        if tsv:
-            try:
-                row = tsv.strip().split("\n")[-1].split("\t")
-                if len(row) >= 15:
-                    skill = skill or row[5]
-                    lo = lo or (row[15] if len(row) > 15 else "")
-                    st.session_state.pipe_meta = {"grade": row[1], "subject": row[0], "skill_code": row[3]}
-            except: pass
 
         if st.button("🚀 Initialize Pipeline", type="primary", disabled=not lo or not skill):
             st.session_state.pipe_lo = lo

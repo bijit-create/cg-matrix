@@ -41,7 +41,9 @@ GRADE APPROPRIATENESS: Match complexity to grade level.
 CONTENT: Generate ONLY from selected_content. Do not invent facts.
 If exemplar_questions provided, match their quality.
 
-QUALITY: Each stem tests a DIFFERENT knowledge point. Wrong answers = plausible misconceptions. Diagnostic — wrong answer reveals a specific gap."""
+QUALITY: Each stem tests a DIFFERENT knowledge point. Wrong answers = plausible misconceptions. Diagnostic — wrong answer reveals a specific gap.
+
+IMAGE: Set needs_image=true for AT LEAST 30% of questions. True when: identifying real objects (food, animals, plants, body parts, tools), diagrams, charts, maps, scenarios with physical objects, experiments. False ONLY for pure definitions, fill-blanks about terminology, abstract concepts."""
 
 QA = """You are a rigorous SME QA reviewer. Check:
 1. FACTUAL: Is the correct answer actually correct? Unit errors?
