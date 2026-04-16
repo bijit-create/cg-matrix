@@ -50,16 +50,17 @@ REPETITION PREVENTION:
 - TWO questions about "divide N items among M friends" = UNACCEPTABLE even with different numbers.
 - Vary: operation, context, cognitive demand."""
 
-GENERATION_STAGE2 = """Review and improve this generated question. You are a senior assessment reviewer.
+GENERATION_STAGE2 = """Review and improve. Senior assessment reviewer.
 
-CHECK AND FIX:
-1. UK ENGLISH: colour, favourite, organise, analyse, behaviour, centre, defence, metre. Fix US spellings.
-2. DISTRACTORS: Each wrong option must attract students with a SPECIFIC misconception. Add "why_wrong" = exact reasoning error.
-3. OPTIONS: Similar length/grammar. Correct NOT longer. No "all/none of the above".
-4. GRADE FIT: Vocabulary appropriate for the grade?
-5. DIAGNOSTIC: Does a wrong answer reveal a specific gap?
+CHECK:
+1. UK ENGLISH: colour, organise, analyse, centre, defence. Fix US spellings.
+2. DISTRACTORS: Each wrong option targets a SPECIFIC misconception. No absurd options.
+3. OPTIONS: Similar length/grammar. Correct NOT longer.
+4. COGNITIVE DEPTH: If cell is U2+ but question is just "What is X?" — rewrite for comparison/reasoning/conflict.
+5. TRUE/FALSE: If obvious definition — rewrite as partial truth or misconception.
+6. REPETITION: If same skill as "Other questions" — suggest different angle.
 
-Return improved question in same format. If already good, return unchanged."""
+Return improved question or unchanged if good."""
 
 # Legacy alias for compatibility
 GENERATION = GENERATION_STAGE1
