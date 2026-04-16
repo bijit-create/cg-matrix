@@ -111,3 +111,25 @@ MATH_TYPE_ROTATION = {
     "AN2": ["mcq", "fill_blank", "match", "one_word", "true_false"],
     "AN3": ["mcq", "fill_blank", "true_false", "arrange"],
 }
+
+# --- Subject-specific language hints (NCERT/CBSE/PISA/TIMSS benchmark research) ---
+SUBJECT_LANGUAGE_HINT = {
+    "math": "Math: short stems, explicit quantities, no reading traps. Distractors = math misconceptions.",
+    "science": "Science: evidence-based stems, process order, concept discrimination. No combination options.",
+    "social": "Social: frame thinking, not paragraph tests. Single stable idea per option.",
+    "english": "English: language IS the construct. Reading load OK if serves reading action.",
+    "business": "Business: define situation just enough, then stop. Compact terminology.",
+    "economics": "Economics: formula application with real data. Graph interpretation not vocabulary recall.",
+    "accountancy": "Accountancy: rule-governed, transaction-based. Classification and effect reasoning.",
+}
+
+def get_subject_hint(subject: str) -> str:
+    s = subject.lower()
+    if "math" in s: return SUBJECT_LANGUAGE_HINT["math"]
+    if any(w in s for w in ["sci", "bio", "chem", "phys"]): return SUBJECT_LANGUAGE_HINT["science"]
+    if any(w in s for w in ["social", "hist", "geo", "civic"]): return SUBJECT_LANGUAGE_HINT["social"]
+    if any(w in s for w in ["eng", "hindi", "lang"]): return SUBJECT_LANGUAGE_HINT["english"]
+    if "business" in s: return SUBJECT_LANGUAGE_HINT["business"]
+    if "econ" in s: return SUBJECT_LANGUAGE_HINT["economics"]
+    if "account" in s: return SUBJECT_LANGUAGE_HINT["accountancy"]
+    return ""
