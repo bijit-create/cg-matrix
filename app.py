@@ -125,25 +125,55 @@ if mode == "⚡ Quick Generate":
             except:
                 log("Exemplar search failed.")
 
+        # Split content into meaningful paragraphs for distribution
+        content_paragraphs = [p.strip() for p in (content or lo).split('\n') if len(p.strip()) > 30]
+        if not content_paragraphs:
+            content_paragraphs = [(content or lo)[:500]]
+
         # Generate questions
         all_qs = []
         for cell, cell_count, cell_def in cells:
             types = prompts.TYPE_ROTATION.get(cell, ["mcq"])
+
+            # Distribute content uniquely per question in this cell
+            import random
+            cell_content = list(content_paragraphs)
+            random.shuffle(cell_content)
+
             for qi in range(cell_count):
                 qtype = types[qi % len(types)]
                 qid = f"{cell}-{len(all_qs)+1}"
                 progress.info(f"Generating {qid} ({qtype})...")
 
+                # Pick unique content for this question
+                if qi < len(cell_content):
+                    this_content = cell_content[qi][:300]
+                elif len(cell_content) > 1:
+                    # Combine two different paragraphs
+                    a = cell_content[qi % len(cell_content)][:150]
+                    b = cell_content[(qi + 1) % len(cell_content)][:150]
+                    this_content = f"{a}\n{b}"
+                else:
+                    this_content = cell_content[0][:300]
+
                 # Avoid repetition
                 already = [q["stem"][:40] for q in all_qs[-5:]]
                 avoid = ("\nALREADY GENERATED (do NOT repeat):\n" + "\n".join(f'- "{s}..."' for s in already)) if already else ""
+
+                # Other content points for variety
+                other_points = [cell_content[i][:40] for i in range(min(3, len(cell_content))) if i != qi % len(cell_content)]
+                other_note = f"\nOther questions test: {'; '.join(other_points)}\nDo NOT overlap." if other_points else ""
 
                 try:
                     prompt = f"""{prompts.GENERATION}
 {prompts.CELL_RULES.get(cell, '')}
 Cell: {cell_def}
 Generate 1 "{qtype}". {prompts.TYPE_INSTRUCTIONS.get(qtype, prompts.TYPE_INSTRUCTIONS['mcq'])}
-Content: {(content or lo)[:500]}
+
+SPECIFIC CONTENT to test (this question MUST be about this):
+"{this_content}"
+{other_note}
+
 Skill: {skill}. Grade: {meta.get('grade','')}.
 UK English. Indian names. Grade-appropriate.{avoid}
 {f'EXEMPLAR QUESTIONS:{chr(10)}{exemplar[:400]}' if exemplar else ''}"""
