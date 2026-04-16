@@ -90,26 +90,27 @@ CELL_RULES = {
     "AN3": "AN3 — Analyse DOK3: Student EVALUATES REASONING, draws conclusions, compares interpretations, identifies faulty logic.",
 }
 
-# All subjects: MCQ, True/False, Match, Arrange. NO error analysis.
+# Default: MCQ DOMINANT (60-70%). No FIB/OneWord.
+# For: Science, Social, Hindi, and all non-Math/English subjects.
 TYPE_ROTATION = {
-    "R1": ["mcq", "true_false", "mcq", "match", "true_false"],
-    "U1": ["mcq", "true_false", "mcq", "true_false", "mcq"],
-    "U2": ["mcq", "match", "arrange", "mcq", "true_false"],
-    "A2": ["mcq", "arrange", "mcq", "match", "mcq"],
-    "A3": ["mcq", "arrange", "true_false", "mcq"],
-    "AN2": ["mcq", "match", "true_false", "arrange", "mcq"],
-    "AN3": ["mcq", "true_false", "arrange", "mcq"],
+    "R1": ["mcq", "mcq", "true_false", "mcq", "match"],
+    "U1": ["mcq", "mcq", "true_false", "mcq", "mcq"],
+    "U2": ["mcq", "match", "mcq", "mcq", "arrange"],
+    "A2": ["mcq", "mcq", "mcq", "match", "mcq"],
+    "A3": ["mcq", "mcq", "arrange", "mcq"],
+    "AN2": ["mcq", "mcq", "match", "mcq", "mcq"],
+    "AN3": ["mcq", "mcq", "mcq", "arrange"],
 }
 
-# Math: adds FIB and one_word
+# Math + English: includes FIB and one_word (typing OK)
 MATH_TYPE_ROTATION = {
-    "R1": ["mcq", "fill_blank", "one_word", "true_false", "mcq"],
-    "U1": ["mcq", "fill_blank", "true_false", "one_word", "mcq"],
-    "U2": ["mcq", "match", "fill_blank", "arrange", "one_word"],
-    "A2": ["mcq", "fill_blank", "one_word", "match", "mcq"],
-    "A3": ["mcq", "fill_blank", "one_word", "arrange"],
-    "AN2": ["mcq", "fill_blank", "match", "one_word", "true_false"],
-    "AN3": ["mcq", "fill_blank", "true_false", "arrange"],
+    "R1": ["mcq", "fill_blank", "mcq", "one_word", "mcq"],
+    "U1": ["mcq", "fill_blank", "mcq", "one_word", "mcq"],
+    "U2": ["mcq", "match", "fill_blank", "mcq", "arrange"],
+    "A2": ["mcq", "fill_blank", "mcq", "one_word", "mcq"],
+    "A3": ["mcq", "fill_blank", "one_word", "mcq"],
+    "AN2": ["mcq", "fill_blank", "mcq", "match", "mcq"],
+    "AN3": ["mcq", "fill_blank", "mcq", "mcq"],
 }
 
 # --- Subject-specific language hints (NCERT/CBSE/PISA/TIMSS benchmark research) ---
