@@ -75,9 +75,9 @@ CELL_RULES = {
     "U1": "U1 — Understand DOK1: Student EXPLAINS/INTERPRETS defining characteristics.",
     "U2": "U2 — Understand DOK2: Student COMPARES/CLASSIFIES using explicit criteria.",
     "A2": "A2 — Apply DOK2: Student APPLIES learned rules to NEW concrete examples.",
-    "A3": "A3 — Apply DOK3: Student APPLIES rules across MULTIPLE STEPS.",
+    "A3": "A3 — Apply DOK3: Student APPLIES rules across MULTIPLE STEPS. Multi-step scenarios combining conditions.",
     "AN2": "AN2 — Analyse DOK2: Student ANALYSES/INFERS patterns in structured data.",
-    "AN3": "AN3 — Analyse DOK3: Student DETECTS ERRORS/EVALUATES REASONING.",
+    "AN3": "AN3 — Analyse DOK3: Student EVALUATES REASONING, draws conclusions, compares interpretations, identifies faulty logic.",
 }
 
 # All subjects: MCQ, True/False, Match, Arrange. NO error analysis.
@@ -86,9 +86,9 @@ TYPE_ROTATION = {
     "U1": ["mcq", "true_false", "mcq", "true_false", "mcq"],
     "U2": ["mcq", "match", "arrange", "mcq", "true_false"],
     "A2": ["mcq", "arrange", "mcq", "match", "mcq"],
-    "A3": ["mcq", "arrange", "mcq"],
-    "AN2": ["mcq", "match", "mcq", "arrange"],
-    "AN3": ["mcq", "mcq", "arrange"],
+    "A3": ["mcq", "arrange", "true_false", "mcq"],
+    "AN2": ["mcq", "match", "true_false", "arrange", "mcq"],
+    "AN3": ["mcq", "true_false", "arrange", "mcq"],
 }
 
 # Math: adds FIB and one_word
@@ -97,7 +97,7 @@ MATH_TYPE_ROTATION = {
     "U1": ["mcq", "fill_blank", "true_false", "one_word", "mcq"],
     "U2": ["mcq", "match", "fill_blank", "arrange", "one_word"],
     "A2": ["mcq", "fill_blank", "one_word", "match", "mcq"],
-    "A3": ["mcq", "fill_blank", "one_word"],
-    "AN2": ["mcq", "fill_blank", "match", "one_word"],
-    "AN3": ["mcq", "fill_blank", "mcq"],
+    "A3": ["mcq", "fill_blank", "one_word", "arrange"],
+    "AN2": ["mcq", "fill_blank", "match", "one_word", "true_false"],
+    "AN3": ["mcq", "fill_blank", "true_false", "arrange"],
 }
