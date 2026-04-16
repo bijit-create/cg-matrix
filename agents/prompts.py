@@ -40,11 +40,15 @@ RULES:
 - Grade: Primary(1-5)=max 15 words/sentence. Middle(6-8)=textbook terms OK. High(9-12)=technical OK.
 - needs_image: Decide intelligently per question. Let subject and content decide.
 
-PICTURE-BASED QUESTIONS:
-When content involves real objects, organisms, diagrams — design the MCQ so stem or options REQUIRE a picture.
-Examples: "Look at the picture. Which is a herbivore?" or "Which picture shows a plant-based food?"
-Set needs_image=true. Write stem assuming student WILL see the image.
-Grammar/vocabulary/pure math — most questions will NOT need images. That is correct."""
+IMAGE (research-backed — CBSE + NCERT):
+- MATH: needs_image=true for: long division layout, fractions, geometry, graphs, place value charts, data tables. These are INHERENTLY VISUAL.
+- SCIENCE: needs_image=true for: organisms, body parts, diagrams, experiments, food webs, maps.
+- ENGLISH: needs_image=true only for maps, charts, picture comprehension.
+
+REPETITION PREVENTION:
+- Read "Other questions test:" carefully. If another tests long division, test a DIFFERENT concept.
+- TWO questions about "divide N items among M friends" = UNACCEPTABLE even with different numbers.
+- Vary: operation, context, cognitive demand."""
 
 GENERATION_STAGE2 = """Review and improve this generated question. You are a senior assessment reviewer.
 
