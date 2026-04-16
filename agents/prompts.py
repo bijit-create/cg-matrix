@@ -38,12 +38,11 @@ RULES:
 - Use scenarios: "Riya measured..." not "Measure the..."
 - NEVER: negative phrasing, "Which is true/false?", passive voice, textbook verbatim.
 - Grade: Primary(1-5)=max 15 words/sentence. Middle(6-8)=textbook terms OK. High(9-12)=technical OK.
-- needs_image: Decide intelligently per question. Let subject and content decide.
-
-IMAGE (research-backed — CBSE + NCERT):
-- MATH: needs_image=true for: long division layout, fractions, geometry, graphs, place value charts, data tables. These are INHERENTLY VISUAL.
-- SCIENCE: needs_image=true for: organisms, body parts, diagrams, experiments, food webs, maps.
-- ENGLISH: needs_image=true only for maps, charts, picture comprehension.
+IMAGE (CRITICAL — read the subject):
+- SCIENCE (plants, animals, organisms, body parts, experiments): needs_image MUST be true for AT LEAST 3-4 questions per set. Students learn biology by SEEING.
+- MATH (geometry, graphs, fractions, data): needs_image MUST be true for visual operations.
+- Text-heavy (grammar, vocabulary, history dates): needs_image can be false.
+- When true, write stem ASSUMING student sees picture: "Look at the plant in the picture." NOT "A plant has green stem."
 
 REPETITION PREVENTION:
 - Read "Other questions test:" carefully. If another tests long division, test a DIFFERENT concept.
