@@ -90,15 +90,15 @@ CELL_RULES = {
     "AN3": "AN3 — Analyse DOK3: Student EVALUATES REASONING, draws conclusions, compares interpretations, identifies faulty logic.",
 }
 
-# Default: MCQ 60-70%, rest True/False + Match + Arrange. No FIB/OneWord.
+# Default: MCQ 60-70%, rest True/False + Match + Arrange. Arrange in ALL cells.
 TYPE_ROTATION = {
-    "R1": ["mcq", "mcq", "true_false", "mcq", "match"],
-    "U1": ["mcq", "mcq", "true_false", "mcq", "mcq"],
-    "U2": ["mcq", "match", "mcq", "mcq", "arrange"],
-    "A2": ["mcq", "mcq", "mcq", "match", "mcq"],
-    "A3": ["mcq", "mcq", "arrange", "mcq"],
-    "AN2": ["mcq", "mcq", "match", "mcq", "mcq"],
-    "AN3": ["mcq", "mcq", "mcq", "arrange"],
+    "R1": ["mcq", "mcq", "true_false", "mcq", "match", "arrange"],
+    "U1": ["mcq", "mcq", "true_false", "mcq", "arrange", "mcq"],
+    "U2": ["mcq", "match", "mcq", "arrange", "mcq", "true_false"],
+    "A2": ["mcq", "mcq", "arrange", "mcq", "match", "mcq"],
+    "A3": ["mcq", "arrange", "mcq", "true_false"],
+    "AN2": ["mcq", "mcq", "match", "arrange", "mcq", "true_false"],
+    "AN3": ["mcq", "arrange", "mcq", "true_false"],
 }
 
 # Math + English: includes FIB and one_word (typing OK)
